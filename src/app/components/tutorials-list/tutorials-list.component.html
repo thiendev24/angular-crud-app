@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <div>
+      <input type="text" placeholder="Search by title" [(ngModel)]="title" />
+      <div>
+        <button type="button" (click)="searchByTitle()">Search</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h4>Tutorials List</h4>
+    <ul>
+      <li
+        *ngFor="let tutorial of tutorials; let i = index"
+        [class.active]="i === currentIndex"
+        (click)="setActiveTutorial(tutorial, i)"
+      >
+        {{ tutorial.title }}
+      </li>
+    </ul>
+    <button (click)="removeAllTutorials()">Remove All Tutorials</button>
+  </div>
+  <div>
+    <app-tutorial-details
+      [viewMode]="true"
+      [currentTutorial]="currentTutorial"
+    ></app-tutorial-details>
+  </div>
+</div>
