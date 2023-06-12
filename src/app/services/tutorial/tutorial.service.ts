@@ -2,21 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Tutorial } from 'src/app/models/tutorial/tutorial.model';
+import { ITutorialService } from './tutorial.interface';
 
 const TUTORIAL_API = 'http://localhost:3000/tutorials';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TutorialService {
+export class TutorialService implements ITutorialService {
   constructor(private http: HttpClient) {}
 
   findByTitle(title: string): Observable<Tutorial[]> {
     return this.http.get<Tutorial[]>(`${TUTORIAL_API}?title=${title}`);
-  }
-
-  deleteAllTutorials() {
-    return this.http.delete(TUTORIAL_API);
   }
 
   deleteTutorial(id: number): Observable<any> {

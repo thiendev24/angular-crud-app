@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tutorial } from 'src/app/models/tutorial/tutorial.model';
 import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tutorials-list',
@@ -8,7 +10,11 @@ import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
   styleUrls: ['./tutorials-list.component.css'],
 })
 export class TutorialsListComponent implements OnInit {
-  constructor(private tutorialService: TutorialService) {}
+  constructor(
+    private tutorialService: TutorialService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.retrieveTutorials();
@@ -40,16 +46,6 @@ export class TutorialsListComponent implements OnInit {
     this.currentIndex = index;
   }
 
-  removeAllTutorials() {
-    this.tutorialService.deleteAllTutorials().subscribe({
-      next: (res) => {
-        console.log(res);
-        this.refreshList();
-      },
-      error: (e) => console.log(e),
-    });
-  }
-
   searchByTitle() {
     this.currentTutorial = {};
     this.currentIndex = -1;
@@ -61,5 +57,29 @@ export class TutorialsListComponent implements OnInit {
       },
       error: (e) => console.log(e),
     });
+  }
+
+  async confirmDelete(id: number) {
+    await Swal.fire({
+      title: 'Are you sure to delete this tutorial?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.tutorialService.deleteTutorial(id).subscribe({
+          next: () =>
+            Swal.fire('Deleted!', 'Your tutorial has been deleted.', 'success'),
+          error: (e) => console.log(e),
+        });
+      }
+    });
+  }
+
+  navigateToEdit(id: number) {
+    this.router.navigate([id], { relativeTo: this.activatedRoute });
   }
 }

@@ -20,11 +20,16 @@
           required
         />
       </div>
-      <button (click)="saveTutorial()">Submit</button>
+      <button
+        class="btn-outline-green mt-2 float-right"
+        (click)="saveTutorial()"
+      >
+        Submit
+      </button>
     </div>
     <div *ngIf="isSubmitted">
       <h4>Tutorial was submitted successfully!</h4>
-      <button (click)="newTutorial()">Add</button>
+      <button class="btn-outline-green" (click)="newTutorial()">Add</button>
     </div>
   </div>
 </div>

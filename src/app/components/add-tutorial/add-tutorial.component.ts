@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tutorial } from 'src/app/models/tutorial/tutorial.model';
 import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-tutorial',
