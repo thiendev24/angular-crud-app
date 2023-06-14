@@ -1,0 +1,35 @@
+<div>
+  <div>
+    <div *ngIf="!isSubmitted">
+      <div>
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          [(ngModel)]="tutorial.title"
+          required
+        />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <input
+          id="description"
+          name="description"
+          [(ngModel)]="tutorial.description"
+          required
+        />
+      </div>
+      <button
+        class="btn-outline-green mt-2 float-right"
+        (click)="saveTutorial()"
+      >
+        Submit
+      </button>
+    </div>
+    <div *ngIf="isSubmitted">
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn-outline-green" (click)="newTutorial()">Add</button>
+    </div>
+  </div>
+</div>

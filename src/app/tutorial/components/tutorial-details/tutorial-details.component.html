@@ -1,0 +1,64 @@
+<p>tutorial details</p>
+<!-- <div *ngIf="viewMode; else editable">
+  <div *ngIf="currentTutorial.id">
+    <h4>Tutorial</h4>
+    <div>
+      <p>Title: {{ currentTutorial.title }}</p>
+      <p>Description: {{ currentTutorial.description }}</p>
+      <p>Status: {{ currentTutorial.isPublished ? "Published" : "Pending" }}</p>
+    </div>
+    <a routerLink="/tutorials/{{ currentTutorial.id }}">Edit</a>
+  </div>
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Please click on a tutorial...</p>
+  </div>
+</div>
+
+<ng-template #editable>
+  <div *ngIf="currentTutorial.id">
+    <h4>Tutorial</h4>
+    <form action="">
+      <div>
+        <label for="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          [(ngModel)]="currentTutorial.title"
+        />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          [(ngModel)]="currentTutorial.description"
+        />
+      </div>
+      <div>
+        <label for="">Status:</label>
+        {{ currentTutorial.isPublished ? "Publish" : "Pending" }}
+      </div>
+    </form>
+    <button
+      *ngIf="currentTutorial.isPublished"
+      (click)="updatePublished(false)"
+    >
+      Unpublish
+    </button>
+    <button
+      *ngIf="!currentTutorial.isPublished"
+      (click)="updatePublished(true)"
+    >
+      Publish
+    </button>
+    <button type="submit" (click)="updateTutorial()">Update</button>
+    <p>{{ message }}</p>
+  </div>
+  <div *ngIf="!currentTutorial.id">
+    <br />
+    <p>Cannot access this tutorial...</p>
+  </div>
+</ng-template> -->
