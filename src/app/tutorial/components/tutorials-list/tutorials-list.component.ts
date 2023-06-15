@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
-import { TutorialService } from '../../services/tutorial/tutorial.service';
+import { ATutorialService } from '../../services/tutorial/tutorial.abstract-class';
 
 @Component({
   selector: 'app-tutorials-list',
@@ -11,7 +11,7 @@ import { TutorialService } from '../../services/tutorial/tutorial.service';
 })
 export class TutorialsListComponent implements OnInit {
   constructor(
-    private tutorialService: TutorialService,
+    private tutorialService: ATutorialService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}

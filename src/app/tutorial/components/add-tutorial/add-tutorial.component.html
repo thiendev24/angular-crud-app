@@ -1,35 +1,47 @@
 <div>
-  <div>
-    <div *ngIf="!isSubmitted">
+  <form #frmCreateTutorial="ngForm">
+    <div>
+      <!-- *ngIf="!isSubmitted" -->
       <div>
         <label for="title">Title</label>
         <input
+          #title="ngModel"
           type="text"
           id="title"
-          name="title"
           [(ngModel)]="tutorial.title"
+          name="title"
           required
+          placeholder="Enter Title"
         />
+        <p
+          *ngIf="title.errors && title.touched && title.dirty"
+          class="text-red-500"
+        >
+          Title invalid
+        </p>
       </div>
       <div>
         <label for="description">Description</label>
         <input
+          #description="ngModel"
           id="description"
           name="description"
           [(ngModel)]="tutorial.description"
           required
+          placeholder="Enter Description"
         />
+        <p
+          *ngIf="description.errors && description.touched && description.dirty"
+          class="text-red-500"
+        >
+          Description Invalid
+        </p>
       </div>
-      <button
-        class="btn-outline-green mt-2 float-right"
-        (click)="saveTutorial()"
-      >
-        Submit
-      </button>
     </div>
-    <div *ngIf="isSubmitted">
+    <div>
+      <!-- *ngIf="isSubmitted" -->
       <h4>Tutorial was submitted successfully!</h4>
-      <button class="btn-outline-green" (click)="newTutorial()">Add</button>
+      <button class="btn-outline-green" (click)="saveTutorial()">Add</button>
     </div>
-  </div>
+  </form>
 </div>

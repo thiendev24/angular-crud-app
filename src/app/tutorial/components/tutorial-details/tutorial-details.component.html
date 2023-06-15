@@ -1,64 +1,34 @@
 <p>tutorial details</p>
-<!-- <div *ngIf="viewMode; else editable">
-  <div *ngIf="currentTutorial.id">
-    <h4>Tutorial</h4>
+<p>{{ tutorial | json }}</p>
+<div>
+  <form>
     <div>
-      <p>Title: {{ currentTutorial.title }}</p>
-      <p>Description: {{ currentTutorial.description }}</p>
-      <p>Status: {{ currentTutorial.isPublished ? "Published" : "Pending" }}</p>
-    </div>
-    <a routerLink="/tutorials/{{ currentTutorial.id }}">Edit</a>
-  </div>
-  <div *ngIf="!currentTutorial">
-    <br />
-    <p>Please click on a tutorial...</p>
-  </div>
-</div>
-
-<ng-template #editable>
-  <div *ngIf="currentTutorial.id">
-    <h4>Tutorial</h4>
-    <form action="">
       <div>
-        <label for="title">Title:</label>
+        <label for="title">Title</label>
         <input
           type="text"
           id="title"
           name="title"
-          [(ngModel)]="currentTutorial.title"
+          required
+          placeholder="Enter Title"
         />
+        <p class="text-red-500">Title invalid</p>
       </div>
       <div>
         <label for="description">Description</label>
         <input
-          type="text"
           id="description"
           name="description"
-          [(ngModel)]="currentTutorial.description"
+          required
+          placeholder="Enter Description"
         />
+        <p class="text-red-500">Description Invalid</p>
       </div>
-      <div>
-        <label for="">Status:</label>
-        {{ currentTutorial.isPublished ? "Publish" : "Pending" }}
-      </div>
-    </form>
-    <button
-      *ngIf="currentTutorial.isPublished"
-      (click)="updatePublished(false)"
-    >
-      Unpublish
-    </button>
-    <button
-      *ngIf="!currentTutorial.isPublished"
-      (click)="updatePublished(true)"
-    >
-      Publish
-    </button>
-    <button type="submit" (click)="updateTutorial()">Update</button>
-    <p>{{ message }}</p>
-  </div>
-  <div *ngIf="!currentTutorial.id">
-    <br />
-    <p>Cannot access this tutorial...</p>
-  </div>
-</ng-template> -->
+    </div>
+    <div>
+      <!-- *ngIf="isSubmitted" -->
+      <h4>Tutorial was submitted successfully!</h4>
+      <button class="btn-outline-green">Add</button>
+    </div>
+  </form>
+</div>

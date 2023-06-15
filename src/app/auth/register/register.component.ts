@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../service/auth.service';
 import { User } from '../model/user/user';
+import { IAuthService } from '../service/IAuth-service.interface';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     phone: this.phone,
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: IAuthService) {}
 
   ngOnInit(): void {}
 

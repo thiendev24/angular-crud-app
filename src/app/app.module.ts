@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -15,6 +16,7 @@ import { NavComponent } from './components/nav/nav.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

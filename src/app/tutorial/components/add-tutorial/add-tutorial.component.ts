@@ -6,6 +6,7 @@ import { TutorialService } from '../../services/tutorial/tutorial.service';
   selector: 'app-add-tutorial',
   templateUrl: './add-tutorial.component.html',
   styleUrls: ['./add-tutorial.component.css'],
+  providers: [TutorialService],
 })
 export class AddTutorialComponent implements OnInit {
   constructor(private tutorialService: TutorialService) {}
@@ -22,9 +23,7 @@ export class AddTutorialComponent implements OnInit {
 
   saveTutorial(): void {
     const data: Tutorial = {
-      title: this.tutorial.title,
-      description: this.tutorial.description,
-      isPublished: false,
+      ...this.tutorial,
     };
 
     this.tutorialService

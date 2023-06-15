@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { ITutorialService } from './tutorial.interface';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
+import { ATutorialService } from './tutorial.abstract-class';
 
 const TUTORIAL_API = 'http://localhost:3000/tutorials';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TutorialService implements ITutorialService {
-  constructor(private http: HttpClient) {}
+export class TutorialService extends ATutorialService {
+  constructor(private http: HttpClient) {
+    super();
+  }
+
+  public override findTutorialById(id: number): Observable<Tutorial> {
+    return this.http.get<Tutorial>(`${TUTORIAL_API}/${id}`);
+  }
 
   findByTitle(title: string): Observable<Tutorial[]> {
     return this.http.get<Tutorial[]>(`${TUTORIAL_API}?title=${title}`);

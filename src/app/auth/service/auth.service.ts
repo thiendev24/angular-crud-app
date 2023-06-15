@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IAuthService } from './IAuth-service.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -9,10 +9,8 @@ const USER_URL = 'http://localhost:3000/users';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService implements OnInit, IAuthService {
+export class AuthService implements IAuthService {
   constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {}
 
   register(user: User): Observable<boolean> {
     let isRegister = false;
