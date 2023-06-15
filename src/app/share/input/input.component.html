@@ -1,1 +1,20 @@
-<p>input works!</p>
+<input [formControl]="fCtrl" [type]="type" [placeholder]="placeholder" />
+<ng-container *ngIf="fCtrl.touched && fCtrl.dirty">
+  <p *ngIf="fCtrl.errors?.['required']" class="text-red-500">
+    Field is required
+  </p>
+  <p *ngIf="fCtrl.errors?.['minlength']" class="text-red-500">
+    The value you inputted is
+    {{fCtrl.errors?.['minlength'].actualLength}} characters long. It must be at
+    least {{fCtrl.errors?.['minlength'].requiredLength}} characters long.
+  </p>
+  <p *ngIf="fCtrl.errors?.['email']" class="text-red-500">
+    You must enter a valid email address
+  </p>
+  <p *ngIf="fCtrl.errors?.['min']" class="text-red-500">Value too low.</p>
+  <p *ngIf="fCtrl.errors?.['max']" class="text-red-500">Value too high.</p>
+  <p *ngIf="fCtrl.errors?.['pattern']" class="text-red-500">
+    Password must be at least 8 characters - must contain at least 1 uppercase
+    letter, 1 lowercase letter, and 1 number - Can contain special characters!
+  </p>
+</ng-container>

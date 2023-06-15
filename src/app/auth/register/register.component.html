@@ -1,34 +1,48 @@
-<!-- Registration Form -->
-<form>
-  <!-- Name -->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <label class="mb-2 inline-block">Name</label>
-    <app-input></app-input>
+    <app-input [fCtrl]="name" placeholder="Enter Name"></app-input>
   </div>
-  <!-- Email -->
+
   <div class="mb-3">
     <label class="mb-2 inline-block">Email</label>
-    <app-input></app-input>
+    <app-input
+      [fCtrl]="email"
+      type="email"
+      placeholder="Enter Email"
+    ></app-input>
   </div>
-  <!-- Age -->
+
   <div class="mb-3">
     <label class="mb-2 inline-block">Age</label>
-    <app-input></app-input>
+    <app-input [fCtrl]="age" type="number" placeholder="Enter Age"></app-input>
   </div>
-  <!-- Password -->
+
   <div class="mb-3">
     <label class="mb-2 inline-block">Password</label>
-    <app-input></app-input>
+    <app-input
+      [fCtrl]="password"
+      type="password"
+      placeholder="Enter Password"
+    ></app-input>
   </div>
-  <!-- Confirm Password -->
+
   <div class="mb-3">
     <label class="mb-2 inline-block">Confirm Password</label>
-    <app-input></app-input>
+    <app-input
+      [fCtrl]="confirmPassword"
+      type="password"
+      placeholder="Enter Password"
+    ></app-input>
   </div>
-  <!-- Phone Number -->
+
   <div class="mb-3">
     <label class="mb-2 inline-block">Phone Number</label>
-    <app-input></app-input>
+    <app-input
+      [fCtrl]="phone"
+      type="number"
+      placeholder="Enter Phone"
+    ></app-input>
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" [disabled]="registerForm.invalid">Submit</button>
 </form>

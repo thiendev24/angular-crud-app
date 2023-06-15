@@ -68,5 +68,15 @@
     {
       "id": 18
     }
+  ],
+  "users": [
+    {
+      "name": "Neque Nam temporibus",
+      "email": "zuzugy@mailinator.com",
+      "age": 79,
+      "password": "Pa$$w0rd!`",
+      "phone": "62",
+      "id": 1
+    }
   ]
 }
