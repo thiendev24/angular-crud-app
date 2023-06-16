@@ -1,8 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  .nav-item {
+    @apply relative text-blue-500 after:duration-300 hover:text-blue-800 after:lg:absolute after:lg:bottom-0 after:lg:left-0 after:lg:h-0.5 after:lg:w-0 after:lg:transition-all after:lg:ease-in-out hover:after:lg:w-full;
+  }
+
   input {
     @apply block h-10 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500;
   }

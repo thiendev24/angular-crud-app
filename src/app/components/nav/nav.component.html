@@ -1,8 +1,18 @@
-<div>
-  <ul class="flex h-10 items-center bg-slate-300 pl-3">
+<div class="flex h-10 items-center justify-between bg-slate-300">
+  <div class="basis-1/6">
+    <img
+      src="assets/svg/home.svg"
+      alt="home"
+      class="inline-block h-5 w-5 hover:cursor-pointer"
+    />
+  </div>
+  <ul
+    class="hidden h-10 basis-3/6 animate-slideDown items-center justify-end pl-3 lg:flex"
+    [ngClass]="{ hidden: !isShowMenu }"
+  >
     <li class="mr-6">
       <a
-        class="text-blue-500 hover:text-blue-800"
+        class="nav-item"
         routerLink="register"
         routerLinkActive="text-blue-800 underline"
         >Register</a
@@ -10,11 +20,19 @@
     </li>
     <li class="mr-6">
       <a
-        class="text-blue-500 hover:text-blue-800"
+        class="nav-item"
         routerLink="tutorials"
         routerLinkActive="text-blue-800 underline"
         >Tutorials</a
       >
     </li>
   </ul>
+  <div class="basis-1/6 lg:hidden">
+    <img
+      src="assets/svg/menu.svg"
+      alt="menu"
+      class="float-right inline-block h-5 w-5 hover:cursor-pointer"
+      (click)="toggleShowMenu()"
+    />
+  </div>
 </div>

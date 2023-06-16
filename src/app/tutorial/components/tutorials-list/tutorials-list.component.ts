@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
 import { ATutorialService } from '../../services/tutorial/tutorial.abstract-class';
@@ -10,11 +9,7 @@ import { ATutorialService } from '../../services/tutorial/tutorial.abstract-clas
   styleUrls: ['./tutorials-list.component.css'],
 })
 export class TutorialsListComponent implements OnInit {
-  constructor(
-    private tutorialService: ATutorialService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private tutorialService: ATutorialService) {}
 
   ngOnInit(): void {
     this.retrieveTutorials();
@@ -77,9 +72,5 @@ export class TutorialsListComponent implements OnInit {
         });
       }
     });
-  }
-
-  navigateToEdit(id: number) {
-    this.router.navigate([id], { relativeTo: this.activatedRoute });
   }
 }

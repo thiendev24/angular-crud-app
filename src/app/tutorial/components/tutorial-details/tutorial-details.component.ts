@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ATutorialService } from '../../services/tutorial/tutorial.abstract-class';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tutorial-details',
@@ -11,6 +12,17 @@ import { Tutorial } from '../../models/tutorial/tutorial.model';
 export class TutorialDetailsComponent implements OnInit {
   id: number;
   tutorial: Tutorial = {};
+
+  title = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(20),
+  ]);
+  description = new FormControl('', [
+    Validators.required,
+    Validators.minLength(10),
+    Validators.maxLength(200),
+  ]);
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +43,26 @@ export class TutorialDetailsComponent implements OnInit {
         this.tutorial = data;
       },
       error: (e) => console.log(e),
+    });
+  }
+  editTutorial = new FormGroup({
+    description: this.description,
+    title: this.title,
+  });
+
+  updateTutorial() {
+    const tutorial: Tutorial = {
+      id: this.id,
+      title: this.editTutorial.value.title!,
+      description: this.editTutorial.value.description!,
+    };
+    this.tutorialService.updateTutorial(this.id, tutorial).subscribe({
+      next(value) {
+        console.log(value);
+      },
+      error(err) {
+        console.log(err);
+      },
     });
   }
 

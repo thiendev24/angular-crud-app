@@ -2,9 +2,8 @@
   "tutorials": [
     {
       "id": 1,
-      "title": "json-server",
-      "description": "test",
-      "isPublished": true
+      "title": "json",
+      "description": "testasdsad"
     },
     {
       "title": "Numquam quis velit ",
@@ -121,12 +120,6 @@
       "description": "Distinctio Quia min",
       "isPublished": false,
       "id": 27
-    },
-    {
-      "title": "Omnis irure sint cu",
-      "description": "Dolore impedit tota",
-      "isPublished": false,
-      "id": 28
     },
     {
       "title": "Eum aspernatur repre",
