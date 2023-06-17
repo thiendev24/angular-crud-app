@@ -3,7 +3,19 @@
     <h1 class="text-center text-2xl">Tutorials List</h1>
 
     <div class="flex justify-between pl-2">
-      <a routerLink="add" class="btn-warning">Create new tutorial</a>
+      <div class="flex justify-start gap-1">
+        <a routerLink="add" class="btn-warning">Create new tutorial</a>
+        <button
+          class="bg-pink-500 text-white active:bg-pink-600 font-medium text-sm px-5 py-2.5 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          type="button"
+          (click)="toggleModal()"
+        >
+          Open small modal
+        </button>
+
+        <app-modal-small [(showModal)]="showModal"> </app-modal-small>
+      </div>
+
       <div class="flex justify-end gap-2">
         <input type="text" placeholder="Search by title" class="w-52" />
         <div>

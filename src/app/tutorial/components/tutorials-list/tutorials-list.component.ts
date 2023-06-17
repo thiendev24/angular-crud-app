@@ -9,6 +9,12 @@ import { ATutorialService } from '../../services/tutorial/tutorial.abstract-clas
   styleUrls: ['./tutorials-list.component.css'],
 })
 export class TutorialsListComponent implements OnInit {
+  showModal = false;
+
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
+
   constructor(private tutorialService: ATutorialService) {}
 
   ngOnInit(): void {

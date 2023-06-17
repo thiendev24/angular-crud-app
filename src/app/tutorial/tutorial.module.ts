@@ -7,6 +7,7 @@ import { AddTutorialComponent } from './components/add-tutorial/add-tutorial.com
 import { ATutorialService } from './services/tutorial/tutorial.abstract-class';
 import { TutorialService } from './services/tutorial/tutorial.service';
 import { TutorialDetailsComponent } from './components/tutorial-details/tutorial-details.component';
+import { ShareModule } from '../share/share.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TutorialDetailsComponent } from './components/tutorial-details/tutorial
     TutorialRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ShareModule,
   ],
   providers: [{ provide: ATutorialService, useClass: TutorialService }],
 })
