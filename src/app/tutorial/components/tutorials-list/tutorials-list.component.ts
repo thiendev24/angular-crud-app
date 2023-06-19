@@ -1,50 +1,73 @@
-import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
+import {
+  Component,
+  DoCheck,
+  KeyValueDiffer,
+  KeyValueDiffers,
+  OnInit,
+} from '@angular/core';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
 import { ATutorialService } from '../../services/tutorial/tutorial.abstract-class';
+
+type Size = { value: number };
 
 @Component({
   selector: 'app-tutorials-list',
   templateUrl: './tutorials-list.component.html',
   styleUrls: ['./tutorials-list.component.css'],
 })
-export class TutorialsListComponent implements OnInit {
+export class TutorialsListComponent implements OnInit, DoCheck {
   showModal = false;
+  currentPageSize: Size = { value: 5 };
+  currentPage = 1;
+  totalPages: number = 0;
 
-  toggleModal() {
-    this.showModal = !this.showModal;
+  differ: KeyValueDiffer<string, number>;
+
+  tutorials: Tutorial[] = [];
+  currentTutorial: Tutorial = {};
+  currentIndex: number = -1;
+  title: string = '';
+
+  constructor(
+    private tutorialService: ATutorialService,
+    private differService: KeyValueDiffers
+  ) {
+    this.differ = this.differService.find(this.currentPageSize).create();
+    // this.totalPages = Math.ceil(this.tutorials.length / this.currentPageSize.value);
   }
-
-  constructor(private tutorialService: ATutorialService) {}
 
   ngOnInit(): void {
     this.retrieveTutorials();
   }
 
-  tutorials?: Tutorial[];
-  currentTutorial: Tutorial = {};
-  currentIndex: number = -1;
-  title: string = '';
+  ngDoCheck(): void {
+    if (this.differ) {
+      const changes = this.differ.diff(this.currentPageSize);
+      if (changes) {
+        this.retrieveTutorials();
+      }
+    }
+  }
+
+  changePageSize(newSize: number) {
+    this.currentPageSize.value = newSize;
+  }
 
   retrieveTutorials() {
-    this.tutorialService.getAllTutorials().subscribe({
-      next: (data) => {
-        this.tutorials = data.length > 0 ? data : [];
-        console.log(data);
-      },
-      error: (e) => console.log(e),
-    });
-  }
-
-  refreshList() {
-    this.retrieveTutorials();
-    this.currentTutorial = {};
-    this.currentIndex = -1;
-  }
-
-  setActiveTutorial(tutorial: Tutorial, index: number) {
-    this.currentTutorial = tutorial;
-    this.currentIndex = index;
+    this.tutorialService
+      .getDataPaging(this.currentPage, this.currentPageSize.value)
+      .subscribe({
+        next: (data) => {
+          this.tutorials = data.length > 0 ? data : [];
+          this.totalPages = Math.ceil(
+            this.tutorials.length / this.currentPageSize.value
+          );
+          console.log(this.tutorials.length);
+          console.log(this.currentPageSize.value);
+          console.log(this.totalPages);
+        },
+        error: (e) => console.log(e),
+      });
   }
 
   searchByTitle() {
@@ -54,29 +77,12 @@ export class TutorialsListComponent implements OnInit {
     this.tutorialService.findByTitle(this.title).subscribe({
       next: (data) => {
         this.tutorials = data.length > 0 ? data : [];
-        console.log(data);
       },
       error: (e) => console.log(e),
     });
   }
 
-  async confirmDelete(id: number) {
-    await Swal.fire({
-      title: 'Are you sure to delete this tutorial?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result: any) => {
-      if (result.isConfirmed) {
-        this.tutorialService.deleteTutorial(id).subscribe({
-          next: () =>
-            Swal.fire('Deleted!', 'Your tutorial has been deleted.', 'success'),
-          error: (e) => console.log(e),
-        });
-      }
-    });
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 }

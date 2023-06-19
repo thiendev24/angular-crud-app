@@ -1,15 +1,9 @@
 {
   "tutorials": [
     {
-      "id": 1,
-      "title": "json",
-      "description": "testasdsad"
-    },
-    {
-      "title": "Numquam quis velit ",
-      "description": "Nihil proident fugi",
-      "isPublished": true,
-      "id": 2
+      "id": 2,
+      "title": "Numq",
+      "description": "Nihil proident fugi"
     },
     {
       "title": "Voluptatibus magnam ",

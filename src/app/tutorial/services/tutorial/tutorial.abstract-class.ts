@@ -2,6 +2,8 @@ import { Observable } from 'rxjs';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
 
 export abstract class ATutorialService {
+  public abstract getDataPaging(page: number, limit: number): Observable<any>;
+
   public abstract findByTitle(title: string): Observable<Tutorial[]>;
 
   public abstract deleteTutorial(id: number): Observable<any>;

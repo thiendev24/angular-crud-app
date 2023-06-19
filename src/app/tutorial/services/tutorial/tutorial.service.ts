@@ -14,6 +14,10 @@ export class TutorialService extends ATutorialService {
     super();
   }
 
+  getDataPaging(page: number, limit: number) {
+    return this.http.get(`${TUTORIAL_API}?_page=${page}&_limit=${limit}`);
+  }
+
   public override findTutorialById(id: number): Observable<Tutorial> {
     return this.http.get<Tutorial>(`${TUTORIAL_API}/${id}`);
   }

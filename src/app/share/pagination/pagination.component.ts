@@ -1,36 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-import { APaginationService } from '../service/pagination.abstract-class';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { Tutorial } from 'src/app/tutorial/models/tutorial/tutorial.model';
+import { TutorialService } from 'src/app/tutorial/services/tutorial/tutorial.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css'],
 })
-export class PaginationComponent<T> implements OnInit {
-  content: T[] = [];
-  pageSize = 5;
-  currentPage = 1;
+export class PaginationComponent<T extends Tutorial>
+  implements OnInit, OnChanges
+{
+  @Input() contents: T[] = [];
+  @Input() pageSize = 5;
+  @Input() currentPage = 1;
+  @Input() totalPages = 0;
+  @Output() contentsChange = new EventEmitter<T[]>();
+  @Output() pageSizeChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() currentPageChange = new EventEmitter<number>();
+  pageSizes = [5, 10, 15, 20];
+  lengthToArray: number[] = new Array(this.totalPages);
 
-  api = 'http://localhost:3000/tutorials';
-
-  constructor(private paginationService: APaginationService) {}
-
-  ngOnInit() {}
-
-  handleChangeCurrentPage(page: number): void {
-    this.currentPage = page;
+  constructor(private tutorialService: TutorialService) {
+    // this.lengthToArray = new Array(this.totalPages);
+    console.log(this.lengthToArray);
   }
 
-  handleChangePageSize(size: number): void {
-    this.pageSize = size;
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {}
+
+  handleChangeCurrentPage(): void {
+    this.currentPageChange.emit(this.currentPage);
   }
 
-  getDataPaging() {
-    this.paginationService
-      .getDataPaging(this.api, this.currentPage, this.pageSize)
-      .subscribe({
-        next: (res) => (this.content = res ? res : []),
-        error: (e) => console.log(e),
-      });
+  handleChangePageSize(): void {
+    this.pageSizeChange.emit(this.pageSize);
+  }
+
+  async confirmDelete(id: number) {
+    await Swal.fire({
+      title: 'Are you sure to delete this tutorial?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.tutorialService.deleteTutorial(id).subscribe({
+          next: () =>
+            Swal.fire('Deleted!', 'Your tutorial has been deleted.', 'success'),
+          error: (e) => console.log(e),
+        });
+      }
+    });
   }
 }

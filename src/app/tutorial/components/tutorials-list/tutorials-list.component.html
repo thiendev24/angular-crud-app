@@ -26,53 +26,14 @@
       </div>
     </div>
     <div class="relative mt-2 overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-        <thead
-          class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
-        >
-          <tr>
-            <th scope="col" class="px-6 py-3">#</th>
-            <th scope="col" class="px-6 py-3">Title</th>
-            <th scope="col" class="px-6 py-3">Description</th>
-            <th scope="col" class="px-6 py-3">Status</th>
-            <th scope="col" class="px-6 py-3 text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            class="odd: bg-slate-200 even:bg-slate-400"
-            *ngFor="let tutorial of tutorials"
-          >
-            <th
-              scope="row"
-              class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
-              {{ tutorial.id }}
-            </th>
-            <td class="px-6 py-4">{{ tutorial.title }}</td>
-            <td class="px-6 py-4">{{ tutorial.description }}</td>
-            <td class="px-6 py-4">{{ tutorial.isPublished }}</td>
-            <td class="flex justify-around px-6 py-4">
-              <a class="btn-outline-purple" routerLink="{{ tutorial.id }}">
-                Edit
-              </a>
-              <button
-                class="btn-outline-red"
-                (click)="confirmDelete(tutorial.id!)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <app-pagination
+        [(contents)]="tutorials"
+        [(pageSize)]="currentPageSize.value"
+        [(currentPage)]="currentPage"
+        [totalPages]="totalPages"
+        (pageSizeChange)="changePageSize($event)"
+      ></app-pagination>
     </div>
-  </div>
-  <div>
-    <!-- <app-tutorial-details
-      [viewMode]="true"
-      [currentTutorial]="currentTutorial"
-    ></app-tutorial-details> -->
   </div>
 </div>
 
