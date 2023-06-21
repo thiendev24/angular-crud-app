@@ -5,12 +5,26 @@
 @tailwind utilities;
 
 @layer base {
+  /* remove arrow on number input */
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  /* end remove arrow on number input */
+
   .nav-item {
     @apply relative text-blue-500 after:duration-300 hover:text-blue-800 after:lg:absolute after:lg:bottom-0 after:lg:left-0 after:lg:h-0.5 after:lg:w-0 after:lg:transition-all after:lg:ease-in-out hover:after:lg:w-full;
   }
 
   input {
-    @apply block h-10 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500;
+    @apply block h-10 w-full rounded-lg border border-gray-300 bg-slate-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500;
   }
 
   .btn {
@@ -39,5 +53,10 @@
 
   .btn-outline-purple {
     @apply mb-2 mr-2 rounded-lg border border-purple-700 px-5 py-2.5 text-center text-sm font-medium text-purple-700 hover:bg-purple-800 hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-300 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-500 dark:hover:text-white dark:focus:ring-purple-900;
+  }
+
+  button[type="submit"] {
+    @apply block w-full rounded bg-indigo-400 px-3 py-1.5 text-white transition
+    hover:bg-indigo-500 disabled:bg-indigo-400 disabled:opacity-50;
   }
 }

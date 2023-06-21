@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ATutorialService } from '../../services/tutorial/tutorial.abstract-class';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
@@ -29,7 +29,6 @@ export class TutorialDetailsComponent implements OnInit {
     private tutorialService: ATutorialService
   ) {
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
   }
 
   ngOnInit(): void {

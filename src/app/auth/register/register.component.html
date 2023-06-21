@@ -1,48 +1,143 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-    <label class="mb-2 inline-block">Name</label>
-    <app-input [fCtrl]="name" placeholder="Enter Name"></app-input>
-  </div>
+<div class="mx-2">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="mb-2 inline-block" for="name">Name</label>
+      <input id="name" placeholder="Enter Name" formControlName="name" />
+      <ng-container *ngIf="registerForm.touched && registerForm.dirty">
+        <p *ngIf="name.errors?.['required']" class="text-red-500 ps-2 mt-1">
+          Name is required
+        </p>
+        <p *ngIf="name.errors?.['minlength']" class="text-red-500 ps-2 mt-1">
+          Name is too short! Must be larger than 3 characters!
+        </p>
+        <p *ngIf="name.errors?.['maxlength']" class="text-red-500 ps-2 mt-1">
+          Name is too long! Must be shorter than 20 characters!
+        </p>
+      </ng-container>
+      <!-- <app-input [fCtrl]="name" placeholder="Enter Name"></app-input> -->
+    </div>
 
-  <div class="mb-3">
-    <label class="mb-2 inline-block">Email</label>
-    <app-input
-      [fCtrl]="email"
-      type="email"
-      placeholder="Enter Email"
-    ></app-input>
-  </div>
+    <div class="mb-3">
+      <label class="mb-2 inline-block" for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Enter Email"
+      />
+      <ng-container *ngIf="registerForm.touched && registerForm.dirty">
+        <p *ngIf="email.errors?.['required']" class="text-red-500 ps-2 mt-1">
+          Email is required
+        </p>
+        <p *ngIf="email.errors?.['pattern']" class="text-red-500 ps-2 mt-1">
+          Email invalid. Example: example@domain.com
+        </p>
+      </ng-container>
+      <!-- <app-input
+        [fCtrl]="email"
+        type="email"
+        placeholder="Enter Email"
+      ></app-input> -->
+    </div>
 
-  <div class="mb-3">
-    <label class="mb-2 inline-block">Age</label>
-    <app-input [fCtrl]="age" type="number" placeholder="Enter Age"></app-input>
-  </div>
+    <div class="mb-3">
+      <label class="mb-2 inline-block" for="age">Age</label>
+      <input
+        type="number"
+        id="age"
+        placeholder="Enter Age"
+        formControlName="age"
+      />
+      <ng-container *ngIf="registerForm.touched && registerForm.dirty">
+        <p class="text-red-500 ps-2 mt-1" *ngIf="age.errors?.['min']">
+          Too young! Must be over 18 years old!
+        </p>
+        <p class="text-red-500 ps-2 mt-1" *ngIf="age.errors?.['max']">
+          Too old! Must be less than 100 years old!
+        </p>
+      </ng-container>
+      <!-- <app-input
+        [fCtrl]="age"
+        type="number"
+        placeholder="Enter Age"
+      ></app-input> -->
+    </div>
 
-  <div class="mb-3">
-    <label class="mb-2 inline-block">Password</label>
-    <app-input
-      [fCtrl]="password"
-      type="password"
-      placeholder="Enter Password"
-    ></app-input>
-  </div>
+    <div class="mb-3">
+      <label class="mb-2 inline-block" for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Enter Password"
+      />
+      <ng-container *ngIf="registerForm.touched && registerForm.dirty">
+        <p class="text-red-500 ps-2 mt-1" *ngIf="password.errors?.['required']">
+          Password is required!
+        </p>
+        <p class="text-red-500 ps-2 mt-1" *ngIf="password.errors?.['pattern']">
+          Password must be at least 8 characters - must contain at least 1
+          uppercase letter, 1 lowercase letter, and 1 number - Can contain
+          special characters!
+        </p>
+      </ng-container>
+      <!-- <app-input
+        [fCtrl]="password"
+        type="password"
+        placeholder="Enter Password"
+      ></app-input> -->
+    </div>
 
-  <div class="mb-3">
-    <label class="mb-2 inline-block">Confirm Password</label>
-    <app-input
-      [fCtrl]="confirmPassword"
-      type="password"
-      placeholder="Enter Password"
-    ></app-input>
-  </div>
+    <div class="mb-3">
+      <label class="mb-2 inline-block" for="confirmPassword"
+        >Confirm Password</label
+      >
+      <input
+        type="password"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        placeholder="Confirm Password"
+      />
+      <ng-container *ngIf="registerForm.touched && registerForm.dirty">
+        <p
+          class="text-red-500 ps-2 mt-1"
+          *ngIf="confirmPassword.errors?.['required']"
+        >
+          You must confirm your password!
+        </p>
+        <p
+          class="text-red-500 ps-2 mt-1"
+          *ngIf="confirmPassword.errors?.['confirmPassword']"
+        >
+          Password does not match!
+        </p>
+      </ng-container>
+      <!-- <app-input
+        [fCtrl]="confirmPassword"
+        type="password"
+        placeholder="Enter Password"
+      ></app-input> -->
+    </div>
 
-  <div class="mb-3">
-    <label class="mb-2 inline-block">Phone Number</label>
-    <app-input
-      [fCtrl]="phone"
-      type="number"
-      placeholder="Enter Phone"
-    ></app-input>
-  </div>
-  <button type="submit" [disabled]="registerForm.invalid">Submit</button>
-</form>
+    <div class="mb-3">
+      <label class="mb-2 inline-block" id="phone">Phone Number</label>
+      <input
+        type="text"
+        formControlName="phone"
+        id="phone"
+        placeholder="Enter phone number"
+      />
+      <ng-container *ngIf="registerForm.touched && registerForm.dirty">
+        <p class="text-red-500 ps-2 mt-1" *ngIf="phone.errors?.['pattern']">
+          Phone number invalid!
+        </p>
+      </ng-container>
+      <!-- <app-input
+        [fCtrl]="phone"
+        type="number"
+        placeholder="Enter Phone"
+      ></app-input> -->
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+  </form>
+</div>

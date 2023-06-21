@@ -2,13 +2,19 @@ import { Observable } from 'rxjs';
 import { Tutorial } from '../../models/tutorial/tutorial.model';
 
 export abstract class ATutorialService {
-  public abstract getDataPaging(page: number, limit: number): Observable<any>;
+  public abstract getDataPaging(
+    page: number,
+    limit: number
+  ): Observable<Tutorial[]>;
 
   public abstract findByTitle(title: string): Observable<Tutorial[]>;
 
-  public abstract deleteTutorial(id: number): Observable<any>;
+  public abstract deleteTutorial(id: number): Observable<Tutorial>;
 
-  public abstract updateTutorial(id: number, data: Tutorial): Observable<any>;
+  public abstract updateTutorial(
+    id: number,
+    data: Tutorial
+  ): Observable<Tutorial>;
 
   public abstract createNewTutorial(tutorial: Tutorial): Observable<boolean>;
 

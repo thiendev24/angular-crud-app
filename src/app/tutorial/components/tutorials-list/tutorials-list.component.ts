@@ -62,9 +62,6 @@ export class TutorialsListComponent implements OnInit, DoCheck {
           this.totalPages = Math.ceil(
             this.tutorials.length / this.currentPageSize.value
           );
-          console.log(this.tutorials.length);
-          console.log(this.currentPageSize.value);
-          console.log(this.totalPages);
         },
         error: (e) => console.log(e),
       });

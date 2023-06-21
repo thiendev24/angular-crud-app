@@ -31,7 +31,6 @@ export class PaginationComponent<T extends Tutorial>
 
   constructor(private tutorialService: TutorialService) {
     // this.lengthToArray = new Array(this.totalPages);
-    console.log(this.lengthToArray);
   }
 
   ngOnInit(): void {}

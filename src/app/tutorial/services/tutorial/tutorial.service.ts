@@ -14,11 +14,13 @@ export class TutorialService extends ATutorialService {
     super();
   }
 
-  getDataPaging(page: number, limit: number) {
-    return this.http.get(`${TUTORIAL_API}?_page=${page}&_limit=${limit}`);
+  getDataPaging(page: number, limit: number): Observable<Tutorial[]> {
+    return this.http.get(
+      `${TUTORIAL_API}?_page=${page}&_limit=${limit}`
+    ) as Observable<Tutorial[]>;
   }
 
-  public override findTutorialById(id: number): Observable<Tutorial> {
+  findTutorialById(id: number): Observable<Tutorial> {
     return this.http.get<Tutorial>(`${TUTORIAL_API}/${id}`);
   }
 
@@ -26,11 +28,11 @@ export class TutorialService extends ATutorialService {
     return this.http.get<Tutorial[]>(`${TUTORIAL_API}?title=${title}`);
   }
 
-  deleteTutorial(id: number): Observable<any> {
+  deleteTutorial(id: number): Observable<Tutorial> {
     return this.http.delete(`${TUTORIAL_API}/${id}`);
   }
 
-  updateTutorial(id: number, data: Tutorial): Observable<any> {
+  updateTutorial(id: number, data: Tutorial): Observable<Tutorial> {
     return this.http.put(`${TUTORIAL_API}/${id}`, data);
   }
 
