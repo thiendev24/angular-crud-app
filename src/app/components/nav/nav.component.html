@@ -1,6 +1,8 @@
-<div class="flex h-10 items-center justify-between bg-slate-300 px-2">
+<div
+  class="flex h-10 items-center justify-between bg-slate-300 px-2 dark:bg-white"
+>
   <div class="basis-1/6">
-    <a routerLink="home">
+    <a routerLink="">
       <img
         src="assets/svg/home.svg"
         alt="home"
@@ -8,33 +10,51 @@
       />
     </a>
   </div>
-  <ul
-    class="hidden h-10 basis-3/6 animate-slideDown items-center justify-end pl-3 lg:flex"
-    [ngClass]="{ hidden: !isShowMenu }"
-  >
-    <li class="mr-6">
-      <a
-        class="nav-item"
-        routerLink="register"
-        routerLinkActive="text-blue-800 underline"
-        >Register</a
-      >
-    </li>
-    <li class="">
-      <a
-        class="nav-item"
-        routerLink="tutorials"
-        routerLinkActive="text-blue-800 underline"
-        >Tutorials</a
-      >
-    </li>
-  </ul>
-  <div class="basis-1/6 lg:hidden">
-    <img
-      src="assets/svg/menu.svg"
-      alt="menu"
-      class="float-right inline-block h-5 w-5 hover:cursor-pointer"
-      (click)="toggleShowMenu()"
-    />
+  <div class="flex justify-end items-center gap-4">
+    <ul
+      class="hidden h-10 basis-3/6 animate-slideDown items-center justify-end pl-3 lg:flex"
+      [ngClass]="{ hidden: !isShowMenu }"
+    >
+      <li class="mr-6">
+        <a
+          class="nav-item dark:text-black"
+          routerLink="register"
+          routerLinkActive="text-blue-800 underline"
+          >Register</a
+        >
+      </li>
+      <li class="">
+        <a
+          class="nav-item"
+          routerLink="tutorials"
+          routerLinkActive="text-blue-800 underline"
+          >Tutorials</a
+        >
+      </li>
+    </ul>
+    <div class="basis-1/6 lg:hidden">
+      <img
+        src="assets/svg/menu.svg"
+        alt="menu"
+        class="float-right inline-block h-5 w-5 hover:cursor-pointer"
+        (click)="toggleShowMenu()"
+      />
+    </div>
+    <div class="flex items-center">
+      <label class="relative inline-flex items-center cursor-pointer">
+        <input
+          type="checkbox"
+          value=""
+          class="sr-only peer lg:w-9 lg:h-5 w-8 h-4"
+          (click)="toggleDarkMode()"
+        />
+        <div
+          class="w-8 h-4 lg:w-9 lg:h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 lg:after:h-4 lg:after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+        ></div>
+        <!-- <span
+          class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Toggle me</span> -->
+      </label>
+    </div>
   </div>
 </div>

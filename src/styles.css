@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  .card {
+    @apply border-2 border-solid border-gray-300 text-center py-20 px-5 rounded-2xl cursor-pointer hover:bg-green-500 ease-in duration-200;
+  }
+
   /* remove arrow on number input */
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class NavComponent {
   isShowMenu = false;
+  @Input() isDarkMode = false;
+  @Output() isDarkModeChange = new EventEmitter();
+
+  toggleDarkMode() {
+    this.isDarkModeChange.emit(!this.isDarkMode);
+  }
 
   toggleShowMenu() {
     this.isShowMenu = !this.isShowMenu;
