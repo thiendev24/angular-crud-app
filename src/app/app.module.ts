@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './components/nav/nav.component';
-import { CommonModule } from '@angular/common';
+import { CounterModule } from './counter/counter.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -17,6 +19,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    CounterModule,
+    StoreModule.forRoot({}),
   ],
   providers: [],
   bootstrap: [AppComponent],

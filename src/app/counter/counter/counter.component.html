@@ -1,0 +1,23 @@
+<div class="px-2">
+  <div>Current count: {{ count$ | async }}</div>
+  <div class="flex justify-start gap-3 my-4">
+    <button
+      (click)="increment()"
+      class="px-4 py-2 border border-gray-300 bg-gray-300 rounded-lg"
+    >
+      Increment
+    </button>
+    <button
+      (click)="decrement()"
+      class="px-4 py-2 border-collapse border-green-500 bg-green-500 rounded-lg"
+    >
+      Decrement
+    </button>
+    <button
+      (click)="reset()"
+      class="px-4 py-2 border-separate border-yellow-300 bg-yellow-300 rounded-lg"
+    >
+      Reset
+    </button>
+  </div>
+</div>
