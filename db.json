@@ -267,5 +267,48 @@
       "phone": "+1 (616) 7981552",
       "id": 18
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Super Robot 2k",
+      "description": "With Laser Guns!",
+      "price": 40.99,
+      "image": "assets/products/robot.png"
+    },
+    {
+      "id": 2,
+      "name": "Lucky Board Game",
+      "description": "Up to 4 players!",
+      "price": 35,
+      "image": "assets/products/board_game.png"
+    },
+    {
+      "id": 3,
+      "name": "The Art of Video games",
+      "description": "Retro Edition. From more than 20 Artists!",
+      "price": 21.15,
+      "image": "assets/products/book.png"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "God father",
+      "author": "someone",
+      "cost": 123
+    },
+    {
+      "id": 2,
+      "title": "dasdas",
+      "author": "adsd",
+      "cost": 0
+    },
+    {
+      "id": 3,
+      "title": "Ivor Pruitt",
+      "author": "Fuga Quia nobis aut",
+      "cost": 69
+    }
   ]
 }

@@ -1,0 +1,20 @@
+<div class="container mt-2">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="" *ngFor="let book of books$ | async">
+      <div class="">
+        <div class="">
+          <h5 class="">{{ book.title }}</h5>
+        </div>
+        <ul class="">
+          <li class="">{{ book.author }}</li>
+          <li class="">${{ book.cost }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="">
+  <div class="grid md:grid-cols-4 md:ring-offset-4">
+    <a routerLink="add-book" class="">Add A New Book</a>
+  </div>
+</div>

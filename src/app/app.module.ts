@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavComponent } from './components/nav/nav.component';
 import { CounterModule } from './counter/counter.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { appReducer } from './share/store';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -20,7 +22,8 @@ import { StoreModule } from '@ngrx/store';
     ReactiveFormsModule,
     CommonModule,
     CounterModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ appState: appReducer }),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

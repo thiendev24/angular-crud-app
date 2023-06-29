@@ -1,0 +1,16 @@
+<div class="container">
+  <legend>Add A New Book</legend>
+  <div class="mb-3">
+    <label for="txtBookName" class="">Book Name</label>
+    <input type="text" [(ngModel)]="bookForm.title" class="" id="txtBookName" />
+  </div>
+  <div class="mb-3">
+    <label for="txtAuthor" class="">Author</label>
+    <input type="text" [(ngModel)]="bookForm.author" class="" id="txtAuthor" />
+  </div>
+  <div class="mb-3">
+    <label for="txtCost" class="">Cost</label>
+    <input type="number" [(ngModel)]="bookForm.cost" class="" id="txtCost" />
+  </div>
+  <button type="button" class="" (click)="save()">Create</button>
+</div>
