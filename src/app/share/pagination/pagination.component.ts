@@ -2,10 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
-  OnInit,
   Output,
-  SimpleChanges,
 } from '@angular/core';
 import { Tutorial } from 'src/app/tutorial/models/tutorial/tutorial.model';
 import { TutorialService } from 'src/app/tutorial/services/tutorial/tutorial.service';
@@ -16,9 +13,7 @@ import Swal from 'sweetalert2';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css'],
 })
-export class PaginationComponent<T extends Tutorial>
-  implements OnInit, OnChanges
-{
+export class PaginationComponent<T extends Tutorial>{
   @Input() contents: T[] = [];
   @Input() pageSize = 5;
   @Input() currentPage = 1;
@@ -30,12 +25,7 @@ export class PaginationComponent<T extends Tutorial>
   lengthToArray: number[] = new Array(this.totalPages);
 
   constructor(private tutorialService: TutorialService) {
-    // this.lengthToArray = new Array(this.totalPages);
   }
-
-  ngOnInit(): void {}
-
-  ngOnChanges(changes: SimpleChanges): void {}
 
   handleChangeCurrentPage(): void {
     this.currentPageChange.emit(this.currentPage);
